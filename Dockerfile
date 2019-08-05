@@ -10,7 +10,7 @@ RUN apt-get install -y nodejs
 
 RUN apt-get install -y npm
 
-#RUN ln -s /usr/bin/nodejs /usr/bin/node
+#RUN ln -s /usr/bin/nodejs /usr/bin/node........
 
 RUN npm install -g http-server
 
