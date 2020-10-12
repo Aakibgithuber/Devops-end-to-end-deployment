@@ -1,6 +1,6 @@
 [all:vars]
 ansible_user=ubuntu
-ansible_ssh_private_key_file=./devops27.pem
+ansible_ssh_private_key_file=~/devops27.pem
 ansible_python_interpreter=/usr/lib/python3.6
 [server]
 172.31.36.185
