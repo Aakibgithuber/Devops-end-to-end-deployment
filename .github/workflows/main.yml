@@ -12,9 +12,14 @@ jobs:
     steps:
      - name: Check out the repo
        uses: actions/checkout@v2
-     - name: Build and Publish head Docker image
-       uses: VaultVulp/gp-docker-action@1.1.7
-       with:
-          github-token: ${{ secrets.TOKEN }} # Provide GITHUB_TOKEN to login into the GitHub Packages
-          image-name: jmsth-docker 
-          image-tag: head # Provide Docker image tag 
+     - name: build docker image and push to ecr repo
+       run: |
+          $(aws ecr get-login --no-include-email --region us-east-1)
+          docker build -t ${{ secrets.ECR_REPO_NAME }}/node_action:v1 .
+          docker push ${{ secrets.ECR_REPO_NAME }}/node_action:v1 
+       env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_REGION: ${{ secrets.AWS_REGION }}
+
+     
