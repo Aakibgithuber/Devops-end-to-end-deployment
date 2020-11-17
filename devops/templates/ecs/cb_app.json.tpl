@@ -1,6 +1,6 @@
 [
   {
-    "name": "cb-app",
+    "name": "jms-app",
     "image": "${app_image}",
     "cpu": ${fargate_cpu},
     "memory": ${fargate_memory},
