@@ -3,8 +3,11 @@ name: CI
 on:
   push:
     branches: [master]
+    tags:
+    - '*'
   release:
     types: [created]
+
 
 jobs:
   build:
