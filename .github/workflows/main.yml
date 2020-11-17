@@ -18,8 +18,8 @@ jobs:
      - name: build docker image and push to ecr repo
        run: |
           $(aws ecr get-login --no-include-email --region us-east-1)
-          docker build -t ${{ secrets.ECR_REPO_NAME }}/node_action:v1 .
-          docker push ${{ secrets.ECR_REPO_NAME }}/node_action:v1 
+          docker build -t ${{ secrets.ECR_REPO_NAME }}/nodeapp:${{ env.RELEASE_VERSION  }} .
+          docker push ${{ secrets.ECR_REPO_NAME }}/nodeapp:${{ env.RELEASE_VERSION }}
        env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
