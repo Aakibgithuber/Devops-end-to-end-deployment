@@ -1,4 +1,4 @@
-name: Node.js Package
+name: CI
 
 on:
   push:
@@ -29,8 +29,6 @@ jobs:
        run: | 
            echo $RELEASE_VERSION
            echo ${{ env.RELEASE_VERSION }}
-     - name: check env name
-       run: echo ${{ env.ENV_NAME }}
      - name: terraform initialization 
        run: cd devops/ && terraform init 
      - name: terraform deployment
