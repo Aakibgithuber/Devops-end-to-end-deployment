@@ -17,7 +17,7 @@ jobs:
        run: echo "RELEASE_VERSION=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
      - name: build docker image and push to ecr repo
        run: |
-          $(aws ecr get-login --no-include-email --region us-east-1)
+          $(aws ecr get-login --no-include-email --region ap-south-1)
           docker build -t ${{ secrets.ECR_REPO_NAME }}/nodeapp:${{ env.RELEASE_VERSION  }} .
           docker push ${{ secrets.ECR_REPO_NAME }}/nodeapp:${{ env.RELEASE_VERSION }}
        env:
@@ -32,6 +32,6 @@ jobs:
      - name: terraform initialization 
        run: cd devops/ && terraform init 
      - name: terraform deployment
-       run: terraform apply -var="tag=${{ env.RELEASE_VERSION }}"  -auto-approve
+       run: cd devops/ && terraform apply -var="tag=${{ env.RELEASE_VERSION }}"  -auto-approve
 
      
