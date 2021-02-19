@@ -3,4 +3,7 @@ devops/.terrafrom/*
 terrafrom.tfstate
 devops/terraform.tfstate
 devops/terraform.tfstate.backup
+base/.terraform
+base/terraform.tfstate
+base/terraform.tfstate.backup
 
