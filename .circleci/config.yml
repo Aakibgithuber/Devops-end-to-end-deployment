@@ -1,18 +1,21 @@
 version: 2.1
-jobs:
-  build:
+executors:
+  docker-executor:
     docker:
       - image: circleci/python:3.8 # You can choose a base image that suits your application
 
+jobs:
+  build-and-push:
+    executor: docker-executor
     steps:
       - checkout
 
-      # Replace with your build commands, e.g., building your application code
+      # Build the Docker image
       - run:
           name: Build Docker image
           command: |
-            docker build -t my_image .
-      
+            docker build -t img1 .
+
       # Authenticate with Docker Hub
       - run:
           name: Authenticate with Docker Hub
@@ -23,15 +26,15 @@ jobs:
       - run:
           name: Push Docker image to Docker Hub
           command: |
-            docker tag your_image_name $DOCKERHUB_USERNAME/my_image:latest
-            docker push $DOCKERHUB_USERNAME/my_image:latest
+            docker tag img1 $DOCKERHUB_USERNAME/img1:latest
+            docker push $DOCKERHUB_USERNAME/img1:latest
 
 workflows:
   version: 2
   build-and-push:
     jobs:
-      - build:
+      - build-and-push:
           filters:
             branches:
               only:
-                - main # Specify the branch to trigger the build
+                - main # Specify the branch to trigger the build and push
