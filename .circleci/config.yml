@@ -23,8 +23,6 @@ jobs:
       - run:
           name: Build Docker image
           command: |
-            sudo apt install docker.io
-            sudo service docker start
             sudo docker build -t my-app -f Dockerfile .
 
       # Tag the Docker image
