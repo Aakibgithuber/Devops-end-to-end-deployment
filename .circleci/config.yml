@@ -23,9 +23,6 @@ jobs:
       - run:
           name: Build Docker image
           command: |
-            sudo groupadd docker
-            sudo usermod -aG docker $USER
-            sudo service docker start
             sudo docker build -t my-app -f Dockerfile .
 
       # Tag the Docker image
