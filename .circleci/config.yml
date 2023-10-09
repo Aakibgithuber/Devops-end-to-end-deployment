@@ -23,6 +23,9 @@ jobs:
       - run:
           name: Build Docker image
           command: |
+            sudo systemctl start docker    # On systems using systemd
+            sudo systemctl enable docker    # On systems using systemd
+            sudo usermod -aG docker $USER
             sudo docker build -t my-app -f Dockerfile .
 
       # Tag the Docker image
