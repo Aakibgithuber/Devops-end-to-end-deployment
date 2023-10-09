@@ -23,7 +23,7 @@ jobs:
       - run:
           name: Build Docker image
           command: |
-            docker build -t my-app -f Dockerfile .  # Replace "Dockerfile" with your actual Dockerfile path
+            docker build -t my-app -f Dockerfile .
 
       # Tag the Docker image
       - run:
