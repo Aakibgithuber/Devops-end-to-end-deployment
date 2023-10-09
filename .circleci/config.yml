@@ -10,6 +10,7 @@ jobs:
       - run:
           name: Install AWS CLI and login to ECR
           command: |
+            sudo su
             sudo apt-get update
             sudo apt-get install python3-pip
             pip3 install awscli --upgrade --user
@@ -25,7 +26,6 @@ jobs:
           command: |
             sudo apt install docker.io
             sudo service docker start
-            docker info
             docker build -t my-app -f Dockerfile .
 
       # Tag the Docker image
