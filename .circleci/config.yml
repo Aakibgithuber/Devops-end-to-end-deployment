@@ -23,6 +23,7 @@ jobs:
       - run:
           name: Build Docker image
           command: |
+            sudo apt install docker.io
             sudo service docker start
             docker info
             docker build -t my-app -f Dockerfile .
