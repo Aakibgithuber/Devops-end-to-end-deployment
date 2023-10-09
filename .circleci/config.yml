@@ -23,7 +23,7 @@ jobs:
       - run:
           name: Build Docker image
           command: |
-            docker build -t my-app -f .
+            docker build .
 
       # Tag the Docker image
       - run:
