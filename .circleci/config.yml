@@ -23,8 +23,7 @@ jobs:
       - run:
           name: Build Docker image
           command: |
-            sudo service docker status
-            sudo docker build -t my-app -f Dockerfile .
+            docker build -t my-app -f .
 
       # Tag the Docker image
       - run:
