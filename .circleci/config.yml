@@ -10,7 +10,8 @@ jobs:
       - run:
           name: Install AWS CLI and login to ECR
           command: |
-            sudo apt-get -y install python3-pip
+            sudo apt-get update
+            sudo apt-get install python3-pip
             pip3 install awscli --upgrade --user
             export PATH=$PATH:$HOME/.local/bin
             aws configure set aws_access_key_id AKIA2UQHUUO4DN5EEFOS
