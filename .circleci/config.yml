@@ -23,8 +23,6 @@ jobs:
       - run:
           name: Build Docker image
           command: |
-             import docker     # Connect to the Docker daemon
-             client = docker.from_env() # Run Docker-related operations
              docker build .
 
       # Tag the Docker image
