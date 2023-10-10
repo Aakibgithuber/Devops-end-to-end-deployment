@@ -15,6 +15,7 @@ jobs:
           name: Build Docker image
           command: |
             docker build -t $IMAGE_NAME:latest .
+            docker tag $IMAGE_NAME:latest public.ecr.aws/i9j3v7x5/myrepo:latest
       - run:
           name: Archive Docker image
           command: docker save -o image.tar $IMAGE_NAME
@@ -33,10 +34,6 @@ jobs:
           command: docker load -i /tmp/workspace/image.tar
       
 # Push the Docker image to ECR
-      - run:
-           name: tag image
-           command: |
-             docker tag $IMAGE_NAME:latest public.ecr.aws/i9j3v7x5/myrepo:latest
       - run:
           name: Push Docker image to ECR
           command: |
