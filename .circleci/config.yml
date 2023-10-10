@@ -5,11 +5,11 @@ jobs:
       - image: circleci/python:3.8  # Use an appropriate base image for your CI environment
     steps:
       - run:
-          name: Install AWS CLI and login to ECR
+          name: Docker Checking
           command: |
             sudo apt-get update
             sudo apt-get upgrade
-            sudo apt-get insatll docker.io
+            sudo apt-get install docker.io
             sudo docker version
       - checkout  # Check out your source code
 
