@@ -2,7 +2,7 @@ version: 2.1
 executors:
   docker-publisher:
     environment:
-      IMAGE_NAME: abc
+      IMAGE_NAME: aakibkhan1212/building-on-ci
     docker:
       - image: circleci/buildpack-deps:stretch       
 jobs:
@@ -10,21 +10,6 @@ jobs:
     executor: docker-publisher
     steps:
       - checkout  # Check out your source code
-
-      # Install AWS CLI and login to ECR
-      - run:
-          name: Install AWS CLI and login to ECR
-          command: |
-            sudo apt-get update
-            sudo apt-get install python3-pip
-            pip3 install awscli --upgrade --user
-            export PATH=$PATH:$HOME/.local/bin
-            aws configure set aws_access_key_id AKIA2UQHUUO4DN5EEFOS
-            aws configure set aws_secret_access_key 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
-            aws configure set default.region us-east-1
-            aws ecr get-login --no-include-email --region us-east-1  
-
-      - checkout
       - setup_remote_docker
       - run:
           name: Build Docker image
