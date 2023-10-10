@@ -9,13 +9,8 @@ jobs:
           command: |
             sudo apt-get update
             sudo apt-get upgrade
-            sudo apt-get install docker.io
-            systemctl unmask docker.service
-            systemctl unmask docker.socket
-            systemctl start docker.service
-            systemctl start docker
-            sudo dockerd
-            sudo service --status-all 
+            sudo apt install docker.io
+            sudo systemctl status docker
             sudo docker version
       - checkout  # Check out your source code
 
