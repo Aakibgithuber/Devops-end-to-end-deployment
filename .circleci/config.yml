@@ -32,10 +32,22 @@ jobs:
           name: Load archived Docker image
           command: docker load -i /tmp/workspace/image.tar
       - run:
-          name: Publish Docker Image to Docker Hub
+          name: Install AWS CLI and login to ECR
           command: |
-            echo "$DOCKERHUB_PASS" | docker login -u "$DOCKERHUB_USERNAME" --password-stdin
-            docker push $IMAGE_NAME:latest
+            sudo apt-get update
+            sudo apt-get install python3-pip
+            pip3 install awscli --upgrade --user
+            export PATH=$PATH:$HOME/.local/bin
+            aws configure set aws_access_key_id AKIA2UQHUUO4DN5EEFOS
+            aws configure set aws_secret_access_key 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
+            aws configure set default.region us-east-1
+            aws ecr get-login --no-include-email --region us-east-1
+# Push the Docker image to ECR
+      - run:
+          name: Push Docker image to ECR
+          command: |
+            docker push public.ecr.aws/i9j3v7x5/myrepo/my-app:latest  # Replace with your ECR repository URL
+
 workflows:
   version: 2
   build-master:
