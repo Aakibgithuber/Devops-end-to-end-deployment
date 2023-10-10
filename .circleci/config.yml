@@ -34,6 +34,10 @@ jobs:
       
 # Push the Docker image to ECR
       - run:
+           name: tag image
+           command: |
+             docker tag $IMAGE_NAME:latest public.ecr.aws/i9j3v7x5/myrepo:latest
+      - run:
           name: Push Docker image to ECR
           command: |
             docker push public.ecr.aws/i9j3v7x5/myrepo/my-app:latest  # Replace with your ECR repository URL
