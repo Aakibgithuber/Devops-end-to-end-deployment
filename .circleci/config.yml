@@ -2,7 +2,7 @@ version: 2.1
 executors:
   ecr-publisher:
     environment:
-      AWS_ACCESS_KEY_ID:AKIA2UQHUUO4ELIUXOEG
+      AWS_ACCESS_KEY_ID: AKIA2UQHUUO4ELIUXOEG
       AWS_SECRET_ACCESS_KEY: 4aBddi7ghRyIM7WFrU6spMWSprxLtbhk7VaQ5Gae
       AWS_DEFAULT_REGION: us-east-1
       IMAGE_NAME: public.ecr.aws/i9j3v7x5/myrepo  # Replace with your ECR repository URI
