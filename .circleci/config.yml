@@ -12,6 +12,17 @@ jobs:
       - checkout
       - setup_remote_docker
       - run:
+          name: Install AWS CLI and login to ECR
+          command: |
+            sudo apt-get update
+            sudo apt-get install python3-pip
+            pip3 install awscli --upgrade --user
+            export PATH=$PATH:$HOME/.local/bin
+            aws configure set aws_access_key_id AKIA2UQHUUO4DN5EEFOS
+            aws configure set aws_secret_access_key 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
+            aws configure set default.region us-east-1
+            aws ecr get-login --no-include-email --region us-east-1
+      - run:
           name: Build Docker image
           command: |
             docker build -t $IMAGE_NAME:latest .
@@ -31,17 +42,7 @@ jobs:
       - run:
           name: Load archived Docker image
           command: docker load -i /tmp/workspace/image.tar
-      - run:
-          name: Install AWS CLI and login to ECR
-          command: |
-            sudo apt-get update
-            sudo apt-get install python3-pip
-            pip3 install awscli --upgrade --user
-            export PATH=$PATH:$HOME/.local/bin
-            aws configure set aws_access_key_id AKIA2UQHUUO4DN5EEFOS
-            aws configure set aws_secret_access_key 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
-            aws configure set default.region us-east-1
-            aws ecr get-login --no-include-email --region us-east-1
+      
 # Push the Docker image to ECR
       - run:
           name: Push Docker image to ECR
