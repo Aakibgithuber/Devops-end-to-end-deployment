@@ -1,16 +1,16 @@
 version: 2.1
 jobs:
-     - run:
-           name: Docker install with acknowledge
-           command: |
-             sudo apt-get update
-             sudo apt-get upgrade
-             sudo apt-get insatll docker.io
-             sudo docker version
   build:
     docker:
       - image: circleci/python:3.8  # Use an appropriate base image for your CI environment
     steps:
+      - run:
+          name: Install AWS CLI and login to ECR
+          command: |
+            sudo apt-get update
+            sudo apt-get upgrade
+            sudo apt-get insatll docker.io
+            sudo docker version
       - checkout  # Check out your source code
 
       # Install AWS CLI and login to ECR
