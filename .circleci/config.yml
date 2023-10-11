@@ -5,7 +5,7 @@ executors:
       AWS_ACCESS_KEY_ID: AKIA2UQHUUO4ELIUXOEG
       AWS_SECRET_ACCESS_KEY: 4aBddi7ghRyIM7WFrU6spMWSprxLtbhk7VaQ5Gae
       AWS_DEFAULT_REGION: us-east-1
-      IMAGE_NAME: public.ecr.aws/i9j3v7x5/myrepo  # Replace with your ECR repository URI
+      IMAGE_NAME: public.ecr.aws/i9j3v7x5/myrepo # Replace with your ECR repository URI
     docker:
       - image: circleci/python:3.7
 
@@ -28,8 +28,8 @@ jobs:
       - run:
           name: Install Docker Dependencies
           command: |
-            curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-            sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+            curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+            echo "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
             sudo apt-get update
             sudo apt-get install -y docker-ce
       - run:
