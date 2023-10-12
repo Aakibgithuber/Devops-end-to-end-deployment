@@ -46,7 +46,7 @@ jobs:
           name: Push Docker Image to ECR
           command: |
             docker tag $IMAGE_NAME:latest $IMAGE_NAME:latest
-            docker push $IMAGE_NAME:latest
+            docker push $IMAGE_NAME:lates
 
 workflows:
   version: 2
